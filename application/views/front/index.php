@@ -19,7 +19,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<?php echo base_url(); ?>assets/css/styles.css?v=1.6" rel="stylesheet">
+
+<link href="<?php echo base_url(); ?>assets/css/styles.css?v=1.6" rel="stylesheet"> <!-- css slider -->
 
 <!-- js -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
@@ -67,8 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <!-- start-smoth-scrolling -->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+<link href='<?php echo base_url(); ?>assets/css/font1.css' rel='stylesheet' type='text/css'>
+<link href='<?php echo base_url(); ?>assets/css/font2.css' rel='stylesheet' type='text/css'>
 </head>
 	
 <body>
