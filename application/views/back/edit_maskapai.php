@@ -1,19 +1,19 @@
 <?php
 
 $id = "";
-$asal = "";
-$tujuan = "";
-$waktu = "";
-$price = "";
+$kode = "";
+$nama = "";
+$deskripsi = "";
+$seat = "";
 if($op=="edit"){
     foreach ($sql->result() as $obj){
          
           $op = "edit";
           $id = $obj->id;
-          $asal = $obj->rute_from;
-          $tujuan = $obj->rute_to;
-          $waktu = $obj->depart_at;
-          $price = $obj->price;
+          $kode = $obj->kode;
+          $nama = $obj->nama;
+          $deskripsi = $obj->deskripsi;
+          $seat = $obj->seat;
 
     }
 }
@@ -376,7 +376,7 @@ if($op=="edit"){
           </a>
         </li>
 
-        <li class="active">
+        <li>
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
             <span class="pull-right-container">
@@ -385,7 +385,7 @@ if($op=="edit"){
           </a>
         </li>
         
-        <li>
+        <li class="active">
           <a href="<?php echo base_url(); ?>c_maskapai">
             <i class="fa fa-plane"></i> <span>Maskapai</span>
             <span class="pull-right-container">
@@ -424,7 +424,7 @@ if($op=="edit"){
       <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Rute Perjalanan </h3>
+              <h3 class="box-title"> Maskapai Penerbangan </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -436,42 +436,40 @@ if($op=="edit"){
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> From </label>
+                          <label class="control-label"> Kode </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="asal" type="text" class="form-control" placeholder="Asal" value="<?php echo $asal; ?>">
+                      <input name="kode" type="text" class="form-control" placeholder="Kode Pesawat" value="<?php echo $kode; ?>">
                   </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> To </label>
+                          <label class="control-label"> Nama </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan" value="<?php echo $tujuan; ?>">
+                      <input name="nama" type="text" class="form-control" placeholder="Nama Pesawat" value="<?php echo $nama; ?>">
                   </div>
                 </div>
 
-                <div class="bootstrap-timepicker">
-                  <div class="form-group">
+                <div class="form-group">
                     <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
+                            <label class="control-label"> Deskripsi </label>
                     </div>
                   <div class="input-group col-sm-8">
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="text" class="form-control timepicker" value="<?php echo $waktu; ?>">
                       
-                  </div>
+                    <input name="nama" type="text" class="form-control" placeholder="Nama Pesawat" value="<?php echo $deskripsi; ?>">
+                      
                   </div>
                   <!-- /.input group -->
                 </div>
 
                  <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> Price </label>
+                          <label class="control-label"> Seat </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga" value="<?php echo $price; ?>">
+                      <input name="seat" type="text" class="form-control" placeholder="Jumlah Kursi" value="<?php echo $seat; ?>">
                   </div>
                 </div>
 
@@ -490,7 +488,7 @@ if($op=="edit"){
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Rute yang akan di edit</h3>
+              <h3 class="box-title">Maskapai yang akan di edit</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -516,10 +514,10 @@ if($op=="edit"){
                 </tr>
                 <tr>
                       <td><?php echo '1' ?></td>
-                      <td><?php echo $asal; ?></td>  
-                      <td><?php echo $tujuan; ?></td> 
-                      <td><?php echo $waktu; ?></td> 
-                      <td>Rp <?php echo $price; ?></td>
+                      <td><?php echo $kode; ?></td>  
+                      <td><?php echo $nama; ?></td> 
+                      <td><?php echo $deskripsi; ?></td> 
+                      <td>Rp <?php echo $seat; ?></td>
 
                 </tr>
                 </thead>

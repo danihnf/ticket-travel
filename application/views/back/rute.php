@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
+  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
@@ -361,7 +364,15 @@
             </span>
           </a>
         </li>
-        
+
+        <li>
+          <a href="<?php echo base_url(); ?>c_maskapai">
+            <i class="fa fa-plane"></i> <span>Maskapai</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">input</small>
+            </span>
+          </a>
+        </li>
       
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
@@ -387,6 +398,26 @@
       </ol>
     </section>
 
+    <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+
     <!-- Main content -->
     <section class="content">
       <!-- FORM INPUT  -->
@@ -399,6 +430,8 @@
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_rute/inputrute">
               <div class="box-body">
+
+                  <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
 
                 <div class="form-group">
                     <div class="col-sm-3">
@@ -418,19 +451,38 @@
                   </div>
                 </div>
 
-                <div class="bootstrap-timepicker">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label">Maskapai</label>
+                    </div>
+                    <div class="col-sm-8 input-group">
+                        <span class="input-group-addon"><i class="fa fa-plane"></i></span>
+                        <select name="maskapai" class="form-control">
+                                <?php
+                                foreach($maskapai as $obj1){
+                                     $id = $obj1->id;
+                                     $nama = $obj1->nama;
+                                ?>
+                                <option value="<?php echo $id; ?>"><?php echo $nama; ?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
+                    </div>
+                </div> 
+
+                <div class="bootstrap-datetimepicker">
                   <div class="form-group">
                     <div class="col-sm-3">
                             <label class="control-label"> Depart At </label>
                     </div>
-                  <div class="input-group col-sm-8">
+                  <div class="input-group col-sm-8" id='datetimepicker1'>
                       <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="text" class="form-control timepicker">
-                      
+                      <input type='text' name="waktu" class="form-control datetimepicker" />
                   </div>
                   </div>
                   <!-- /.input group -->
-                </div>
+               </div>
 
                  <div class="form-group">
                     <div class="col-sm-3">
@@ -753,6 +805,7 @@
 <script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url(); ?>admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
@@ -767,11 +820,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
 <script type="text/javascript">
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    });
-</script>
+            $(function () {
+                $('datetimepicker1').datetimepicker();
+                showInputs: false
+            });
+        </script>
 </body>
 </html>

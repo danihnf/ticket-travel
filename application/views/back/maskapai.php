@@ -1,26 +1,3 @@
-<?php
-
-$id = "";
-$asal = "";
-$tujuan = "";
-$waktu = "";
-$price = "";
-if($op=="edit"){
-    foreach ($sql->result() as $obj){
-         
-          $op = "edit";
-          $id = $obj->id;
-          $asal = $obj->rute_from;
-          $tujuan = $obj->rute_to;
-          $waktu = $obj->depart_at;
-          $price = $obj->price;
-
-    }
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -376,7 +353,7 @@ if($op=="edit"){
           </a>
         </li>
 
-        <li class="active">
+        <li>
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
             <span class="pull-right-container">
@@ -384,8 +361,8 @@ if($op=="edit"){
             </span>
           </a>
         </li>
-        
-        <li>
+
+        <li class="active">
           <a href="<?php echo base_url(); ?>c_maskapai">
             <i class="fa fa-plane"></i> <span>Maskapai</span>
             <span class="pull-right-container">
@@ -393,7 +370,7 @@ if($op=="edit"){
             </span>
           </a>
         </li>
-
+      
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
@@ -409,11 +386,11 @@ if($op=="edit"){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Rute
-        <small>Perjalanan Pesawat</small>
+        Maskapai
+        <small>Pesawat</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Rute</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Maskapai</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -424,54 +401,51 @@ if($op=="edit"){
       <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Rute Perjalanan </h3>
+              <h3 class="box-title"> Maskapai Penerbangan </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_rute/inputrute">
-                        <input type="text" name="op" value="<?php echo $op; ?>" class="form-control">
-
-                        <input type="text" name="id" value="<?php echo $id; ?>" class="form-control">
+            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_maskapai/inputmaskapai">
               <div class="box-body">
 
+              <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
+
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> From </label>
+                          <label class="control-label"> Kode </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="asal" type="text" class="form-control" placeholder="Asal" value="<?php echo $asal; ?>">
+                      <input name="kode" type="text" class="form-control" placeholder="Kode Pesawat">
                   </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> To </label>
+                          <label class="control-label"> Nama </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan" value="<?php echo $tujuan; ?>">
+                      <input name="nama" type="text" class="form-control" placeholder="Nama Pesawat">
                   </div>
                 </div>
 
-                <div class="bootstrap-timepicker">
                   <div class="form-group">
                     <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
+                            <label class="control-label"> Deskripsi </label>
                     </div>
                   <div class="input-group col-sm-8">
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="text" class="form-control timepicker" value="<?php echo $waktu; ?>">
                       
-                  </div>
+                    <textarea name="deskripsi" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                      
                   </div>
                   <!-- /.input group -->
                 </div>
 
                  <div class="form-group">
                     <div class="col-sm-3">
-                          <label class="control-label"> Price </label>
+                          <label class="control-label"> Seat </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga" value="<?php echo $price; ?>">
+                      <input name="seat" type="text" class="form-control" placeholder="Jumlah Kursi">
                   </div>
                 </div>
 
@@ -490,7 +464,7 @@ if($op=="edit"){
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Rute yang akan di edit</h3>
+              <h3 class="box-title">Maskapai Penerbangan</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -508,20 +482,33 @@ if($op=="edit"){
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Depart At</th>
-                  <th>Price</th>
-                
+                  <th>Kode</th>
+                  <th>Nama Pesawat</th>
+                  <th>Deskripsi</th>
+                  <th>Seat</th>
+                  <th>Action</th>
                 </tr>
+                  <?php
+                  $no=$this->uri->segment('3');;
+                  foreach ($maskapai as $obj1) {
+                    $no++; 
+                 ?> 
                 <tr>
-                      <td><?php echo '1' ?></td>
-                      <td><?php echo $asal; ?></td>  
-                      <td><?php echo $tujuan; ?></td> 
-                      <td><?php echo $waktu; ?></td> 
-                      <td>Rp <?php echo $price; ?></td>
+                      <td><?php echo $no; ?></td>
+                      <td><?php echo $obj1->kode; ?></td>  
+                      <td><?php echo $obj1->nama; ?></td> 
+                      <td><?php echo $obj1->deskripsi; ?></td> 
+                      <td><?php echo $obj1->seat; ?> Kursi</td>
+                      <td>
+                        <a href="<?php echo base_url(); ?>c_maskapai/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
+
+                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_maskapai/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
+                      </td>
 
                 </tr>
+                <?php
+                  }
+                ?>
                 </thead>
                 
               </table>

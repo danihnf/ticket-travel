@@ -362,7 +362,15 @@
           </a>
         </li>
         
-      
+        <li>
+          <a href="<?php echo base_url(); ?>c_maskapai">
+            <i class="fa fa-plane"></i> <span>Maskapai</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">input</small>
+            </span>
+          </a>
+        </li>
+
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
@@ -382,7 +390,7 @@
         <small>Penumpang Pesawat</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Rute</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Customer</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>

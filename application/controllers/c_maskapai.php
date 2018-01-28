@@ -1,22 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_rute extends CI_Controller {
+class C_maskapai extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
 		$this->load->helper(array('url'));
-		$this->load->model("m_rute");
 		$this->load->model("m_maskapai");
 	}
 
 	public function index(){
 		
 		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
+		$jumlah_data = $this->m_maskapai->jumlah_data();
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'index.php/c_rute/index/';
+		$config['base_url'] = base_url().'index.php/c_maskapai/index/';
 		$config['total_rows'] = $jumlah_data;
 		$config['per_page'] = 5;
 
@@ -45,49 +44,48 @@ class C_rute extends CI_Controller {
 
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
-		$data['maskapai'] = $this->m_maskapai->showedit();
+		$data['maskapai'] = $this->m_maskapai->data($config['per_page'],$from);
 		
-		$this->load->view('back/rute', $data);
+		$this->load->view('back/maskapai', $data);
 	}
 
-	public function inputrute(){
+	public function inputmaskapai(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$from = $this->input->post('asal');
-		$to = $this->input->post('tujuan');
-		$depart_at = $this->input->post('waktu');
-		$price = $this->input->post('harga');
+		$kode = $this->input->post('kode');
+		$nama = $this->input->post('nama');
+		$deskripsi = $this->input->post('deskripsi');
+		$seat = $this->input->post('seat');
 
 		$data = array(
 			
-			'rute_from' => $from,
-			'rute_to' => $to,
-			'depart_at' => $depart_at,
-			'price' => $price,
+			'kode' => $kode,
+			'nama' => $nama,
+			'deskripsi' => $deskripsi,
+			'seat' => $seat,
 
 			);
 		if($op=="tambah"){
-			$this->m_rute->addrute($data);
+			$this->m_maskapai->addmaskapai($data);
 		}
 		else{
-			$this->m_rute->update($id,$data);
+			$this->m_maskapai->update($id,$data);
 		}
 	
-		redirect('c_rute');
+		redirect('c_maskapai');
 	}
 
 	public function hapus($id){
 
-		$this->m_rute->hapus($id);
-		redirect('c_rute');
+		$this->m_maskapai->hapus($id);
+		redirect('c_maskapai');
 	}
 
 	public function edit($id){
 		$data['op'] = 'edit';
-		$data['sql'] = $this->m_rute->edit($id);
+		$data['sql'] = $this->m_maskapai->edit($id);
 
-		$this->load->view('back/edit_rute',$data);	
+		$this->load->view('back/edit_maskapai',$data);	
 	}
 
 }

@@ -359,6 +359,15 @@
             </span>
           </a>
         </li>
+
+        <li>
+          <a href="<?php echo base_url(); ?>c_maskapai">
+            <i class="fa fa-plane"></i> <span>Maskapai</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">input</small>
+            </span>
+          </a>
+        </li>
         
       
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
