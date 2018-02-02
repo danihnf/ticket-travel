@@ -102,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="col-md-7 bann-info wow fadeInRight animated" data-wow-delay=".5s">
 		<h2>Online Tickets with Zero Booking Fees</h2>
-		<form action="<?php echo base_url(); ?>landing/search" method="POST">
+		<form action="<?php echo base_url(); ?>" method="POST">
 
 		<div class="ban-top">
 

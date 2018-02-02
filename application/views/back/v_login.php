@@ -22,7 +22,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 
-					<form method="post" action="<?php echo base_url('c_dashboard/login') ?>">
+					<form method="post" action="<?php echo base_url('c_login/login') ?>">
 						<div class="form-group">
 							<label for="username"> Username </label>
 							<input type="text" class="form-control" id="username" name="username" placeholder="Nama Pengguna">
@@ -33,7 +33,7 @@
 							<input type="password" class="form-control" id="username" name="password" placeholder="Kata Sandi">
 						</div>
 						<button type="submit" class="btn btn-primary" value="login">Login</button>
-						<a href="<?php echo base_url(); ?>signup" class="btn btn-link"> Sign Up </a>
+						<a href="#" class="btn btn-link"> Sign Up </a>
 					</form>
 					</div>
 				</div>

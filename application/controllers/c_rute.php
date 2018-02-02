@@ -8,6 +8,10 @@ class C_rute extends CI_Controller {
 		$this->load->helper(array('url'));
 		$this->load->model("m_rute");
 		$this->load->model("m_maskapai");
+
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("c_login"));
+		}
 	}
 
 	public function index(){
@@ -54,16 +58,21 @@ class C_rute extends CI_Controller {
 	public function inputrute(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
+		$id_maskapai = $this->input->post('maskapai');
 		$from = $this->input->post('asal');
 		$to = $this->input->post('tujuan');
-		$depart_at = $this->input->post('waktu');
+		$depart_at = $this->input->post('depart');
+		$arrive_at = $this->input->post('arrive');
 		$price = $this->input->post('harga');
-
+			$tgl = date('Y-m-d H:i', strtotime($depart_at));
+			$tgl2 = date('Y-m-d H:i', strtotime($arrive_at));
 		$data = array(
 			
+			'id_maskapai' => $id_maskapai,
 			'rute_from' => $from,
 			'rute_to' => $to,
-			'depart_at' => $depart_at,
+			'depart_at' => $tgl,
+			'arrive_at' => $tgl2,
 			'price' => $price,
 
 			);
@@ -86,6 +95,7 @@ class C_rute extends CI_Controller {
 	public function edit($id){
 		$data['op'] = 'edit';
 		$data['sql'] = $this->m_rute->edit($id);
+		$data['maskapai'] = $this->m_maskapai->showedit();
 
 		$this->load->view('back/edit_rute',$data);	
 	}

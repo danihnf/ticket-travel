@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -26,6 +26,7 @@
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker-standalone.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
@@ -264,7 +265,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $this->session->userdata("username"); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -272,8 +273,8 @@
                 <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo $this->session->userdata("username"); ?> - RPL 1
+                  <small>ADMIN</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -297,7 +298,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url(); ?>c_login/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -320,7 +321,7 @@
           <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $this->session->userdata("username"); ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -398,26 +399,6 @@
       </ol>
     </section>
 
-    <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
-
     <!-- Main content -->
     <section class="content">
       <!-- FORM INPUT  -->
@@ -471,18 +452,40 @@
                     </div>
                 </div> 
 
-                <div class="bootstrap-datetimepicker">
-                  <div class="form-group">
-                    <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
+                <div class="form-group">
+                  <div class="col-sm-3">
+                        <label class="control-label">Depart</label>
                     </div>
-                  <div class="input-group col-sm-8" id='datetimepicker1'>
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                      <input type='text' name="waktu" class="form-control datetimepicker" />
+                  <div class='input-group col-sm-8 date' id='datetimepicker1'>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input name="depart" type="text" class="form-control" />
                   </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+                      </script>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-3">
+                        <label class="control-label">Arrive</label>
+                    </div>
+                  <div class='input-group col-sm-8 date' id='datetimepicker2'>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input name="arrive" type="text" class="form-control" />
                   </div>
-                  <!-- /.input group -->
-               </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker2').datetimepicker();
+                          });
+                      </script>
+                </div>
+
 
                  <div class="form-group">
                     <div class="col-sm-3">
@@ -526,9 +529,11 @@
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Maskapai</th>
                   <th>From</th>
                   <th>To</th>
                   <th>Depart At</th>
+                  <th>Arrive At</th>
                   <th>Price</th>
                   <th>Action</th>
                 </tr>
@@ -539,9 +544,11 @@
                  ?> 
                 <tr>
                       <td><?php echo $no; ?></td>
+                      <td><?php echo $obj1->id_maskapai; ?></td>  
                       <td><?php echo $obj1->rute_from; ?></td>  
                       <td><?php echo $obj1->rute_to; ?></td> 
                       <td><?php echo $obj1->depart_at; ?></td> 
+                      <td><?php echo $obj1->arrive_at; ?></td> 
                       <td>Rp <?php echo $obj1->price; ?></td>
                       <td>
                         <a href="<?php echo base_url(); ?>c_rute/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
@@ -805,7 +812,9 @@
 <script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
 <script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url(); ?>admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
@@ -820,10 +829,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
 <script type="text/javascript">
-            $(function () {
-                $('datetimepicker1').datetimepicker();
-                showInputs: false
-            });
-        </script>
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+</script>
+<script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker2').datetimepicker();
+                          });
+</script>
 </body>
 </html>

@@ -34,6 +34,26 @@ class M_rute extends CI_Model {
     	$this->db->update('rute',$data);
     }
 
+    public function funcname($id){
+
+        $this->db->select('nama');
+        $this->db->from('rute a');
+        $this->db->join('maskapai b', 'b.id=a.id_maskapai'
+            , 'left');
+
+        $this->db->where('a.id_maskapai');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    public function caridata(){
+
+        $this->db->like('from', $f);
+        $this->db->like('to', $t);
+        
+ }
+
 }
 
 /* End of file m_user.php */

@@ -7,6 +7,7 @@ class Landing extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model("m_user");
+		$this->load->model("m_rute");
 	
 	}
 

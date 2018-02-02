@@ -7,6 +7,10 @@ class C_maskapai extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url'));
 		$this->load->model("m_maskapai");
+
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("c_login"));
+		}
 	}
 
 	public function index(){

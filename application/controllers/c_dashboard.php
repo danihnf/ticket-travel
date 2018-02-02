@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_dashboard extends CI_Controller {
 
-	public function index(){
-		$this->load->view('back/v_admin');
+	function __construct(){
+		parent::__construct();		
+		
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url("c_login"));
+		}
+
 	}
 
-	public function login(){
-		$this->load->view('back/login');
+	public function index(){
+		$this->load->view('back/v_admin');
 	}
 
 }

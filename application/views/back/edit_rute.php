@@ -1,18 +1,22 @@
 <?php
 
 $id = "";
-$asal = "";
-$tujuan = "";
-$waktu = "";
+$id_maskapai = "";
+$from = "";
+$to = "";
+$depart_at = "";
+$arrive_at = "";
 $price = "";
 if($op=="edit"){
     foreach ($sql->result() as $obj){
          
           $op = "edit";
           $id = $obj->id;
-          $asal = $obj->rute_from;
-          $tujuan = $obj->rute_to;
-          $waktu = $obj->depart_at;
+          $id_maskapai = $obj->id_maskapai;
+          $from = $obj->rute_from;
+          $to = $obj->rute_to;
+          $depart_at = $obj->depart_at;
+          $arrive_at = $obj->arrive_at;
           $price = $obj->price;
 
     }
@@ -284,7 +288,7 @@ if($op=="edit"){
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $this->session->userdata("username"); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -292,8 +296,8 @@ if($op=="edit"){
                 <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo $this->session->userdata("username"); ?> - RPL 1
+                  <small>ADMIN</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -317,7 +321,7 @@ if($op=="edit"){
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url(); ?>c_login/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -340,7 +344,7 @@ if($op=="edit"){
           <img src="<?php echo base_url(); ?>admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $this->session->userdata("username"); ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -452,18 +456,67 @@ if($op=="edit"){
                   </div>
                 </div>
 
-                <div class="bootstrap-timepicker">
-                  <div class="form-group">
+                <div class="form-group">
                     <div class="col-sm-3">
-                            <label class="control-label"> Depart At </label>
+                        <label class="control-label">Maskapai</label>
                     </div>
-                  <div class="input-group col-sm-8">
-                      <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-                    <input name="waktu" type="text" class="form-control timepicker" value="<?php echo $waktu; ?>">
-                      
+                    <div class="col-sm-8 input-group">
+                        <span class="input-group-addon"><i class="fa fa-plane"></i></span>
+                        <select name="maskapai" class="form-control">
+                                <?php
+                                foreach($maskapai as $obj1){
+                                     $id = $obj1->id;
+                                     $nama = $obj1->nama;
+                                ?>
+                                <option value="<?php echo $id; ?>"><?php echo $nama; ?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                  <div class="col-sm-3">
+                        <label class="control-label">Depart</label>
+                    </div>
+                  <div class='input-group col-sm-8 date' id='datetimepicker1'>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input name="depart" type='text' class="form-control" />
                   </div>
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+                      </script>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-3">
+                        <label class="control-label">Arrive</label>
+                    </div>
+                  <div class='input-group col-sm-8 date' id='datetimepicker2'>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input name="arrive" type='text' class="form-control" />
                   </div>
-                  <!-- /.input group -->
+                      <script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker2').datetimepicker();
+                          });
+                      </script>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Price </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="harga" type="text" class="form-control" placeholder="Harga">
+                  </div>
                 </div>
 
                  <div class="form-group">
@@ -788,11 +841,14 @@ if($op=="edit"){
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
 <script type="text/javascript">
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    });
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+</script>
+<script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker2').datetimepicker();
+                          });
 </script>
 </body>
 </html>
