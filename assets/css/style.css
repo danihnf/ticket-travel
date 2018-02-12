@@ -129,6 +129,15 @@ li.ned,li.wrt,li.tol{
 	font-size: 14px;
 	font-weight:600;
 }
+
+.infoo {
+    color: #1f8dd6;
+    line-height: 18px;
+    margin-top: 0px;
+    font-size: 25px;
+    font-weight:600;
+}
+
 .lock li {
     display: inline-block;
 }
@@ -1310,6 +1319,14 @@ ul.off-mo span {
     color: #999;
     font-weight: 600;
     margin: 0;
+}
+
+.pesawat{
+    font-size: 1.7em;
+    color: #000;
+    font-weight: 600;
+    margin: 0;
+
 }	
 .selectroom_right h3 {
     font-size: 1.7em;

@@ -16,40 +16,7 @@ class C_rute extends CI_Controller {
 
 	public function index(){
 		
-		$this->load->database();
-		$jumlah_data = $this->m_rute->jumlah_data();
-		$this->load->library('pagination');
-
-		$config['base_url'] = base_url().'index.php/c_rute/index/';
-		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 5;
-
-		$config['full_tag_open'] = '<ul class="pagination">';
-		$config['full_tag_close'] = '</ul>';
-
-		$config['first_tag_open'] = '<li>';
-		$config['last_tag_open'] = '<li>';
-
-		$config['next_tag_open'] = '<li>';
-		$config['prev_tag_open'] = '<li>';
-
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_close'] = '</li>';
-
-		$config['next_tag_close'] = '</li>';
-		$config['prev_tag_close'] = '</li>';
-
-		$config['cur_tag_open'] = "<li class=\"active\"><span><b>";
-		$config['cur_tag_close'] = "</b></span></li>";
-
-		$this->pagination->initialize($config);
-
-		$from = $this->uri->segment(3);
-		$this->pagination->initialize($config);		
-		$data['rute'] = $this->m_rute->data($config['per_page'],$from);
+		$data['rute'] = $this->m_rute->data();
 		$data['maskapai'] = $this->m_maskapai->showedit();
 		
 		$this->load->view('back/rute', $data);
@@ -58,9 +25,9 @@ class C_rute extends CI_Controller {
 	public function inputrute(){
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
-		$id_maskapai = $this->input->post('maskapai');
 		$from = $this->input->post('asal');
 		$to = $this->input->post('tujuan');
+		$id_maskapai = $this->input->post('maskapai');
 		$depart_at = $this->input->post('depart');
 		$arrive_at = $this->input->post('arrive');
 		$price = $this->input->post('harga');
@@ -68,12 +35,12 @@ class C_rute extends CI_Controller {
 			$tgl2 = date('Y-m-d H:i', strtotime($arrive_at));
 		$data = array(
 			
-			'id_maskapai' => $id_maskapai,
 			'rute_from' => $from,
 			'rute_to' => $to,
+			'id_maskapai' => $id_maskapai,
 			'depart_at' => $tgl,
 			'arrive_at' => $tgl2,
-			'price' => $price,
+			'price' => $price
 
 			);
 		if($op=="tambah"){

@@ -433,9 +433,9 @@ if($op=="edit"){
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_rute/inputrute">
-                        <input type="text" name="op" value="<?php echo $op; ?>" class="form-control">
+                        <input type="hidden" name="op" value="<?php echo $op; ?>" class="form-control">
 
-                        <input type="text" name="id" value="<?php echo $id; ?>" class="form-control">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>" class="form-control">
               <div class="box-body">
 
                 <div class="form-group">
@@ -443,7 +443,7 @@ if($op=="edit"){
                           <label class="control-label"> From </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="asal" type="text" class="form-control" placeholder="Asal" value="<?php echo $asal; ?>">
+                      <input name="asal" type="text" class="form-control" placeholder="Asal" value="<?php echo $from; ?>">
                   </div>
                 </div>
 
@@ -452,7 +452,7 @@ if($op=="edit"){
                           <label class="control-label"> To </label>
                     </div>
                   <div class="input-group col-sm-8">        
-                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan" value="<?php echo $tujuan; ?>">
+                      <input name="tujuan" type="text" class="form-control" placeholder="Tujuan" value="<?php echo $to; ?>">
                   </div>
                 </div>
 
@@ -510,15 +510,6 @@ if($op=="edit"){
                       </script>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label"> Price </label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="harga" type="text" class="form-control" placeholder="Harga">
-                  </div>
-                </div>
-
                  <div class="form-group">
                     <div class="col-sm-3">
                           <label class="control-label"> Price </label>
@@ -557,31 +548,9 @@ if($op=="edit"){
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Depart At</th>
-                  <th>Price</th>
-                
-                </tr>
-                <tr>
-                      <td><?php echo '1' ?></td>
-                      <td><?php echo $asal; ?></td>  
-                      <td><?php echo $tujuan; ?></td> 
-                      <td><?php echo $waktu; ?></td> 
-                      <td>Rp <?php echo $price; ?></td>
-
-                </tr>
-                </thead>
-                
-              </table>
+              
               <div class="box-footer clearfix pagination pagination-sm no-margin">
-              <?php
-                echo $this->pagination->create_links();
-              ?>
+              
               <div class="box-footer clearfix">
             </div>
             <!-- /.box-body -->

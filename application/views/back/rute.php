@@ -444,7 +444,7 @@
                                      $id = $obj1->id;
                                      $nama = $obj1->nama;
                                 ?>
-                                <option value="<?php echo $id; ?>"><?php echo $nama; ?></option>
+                                <option value="<?php echo $id; ?>"> <?php echo $nama; ?></option>
                                 <?php
                             }
                             ?>
@@ -544,7 +544,7 @@
                  ?> 
                 <tr>
                       <td><?php echo $no; ?></td>
-                      <td><?php echo $obj1->id_maskapai; ?></td>  
+                      <td><?php echo $obj1->nama; ?></td>  
                       <td><?php echo $obj1->rute_from; ?></td>  
                       <td><?php echo $obj1->rute_to; ?></td> 
                       <td><?php echo $obj1->depart_at; ?></td> 

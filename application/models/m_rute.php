@@ -4,54 +4,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_rute extends CI_Model {
 
 	public function addrute($data){
-    	$this->db->insert('rute',$data);
-    }
+   $this->db->insert('rute',$data);
+ }
 
-    function data($number,$offset){
-        return $query = $this->db->get('rute',$number,$offset)->result();       
-    }
+ function data(){
+       // return $query = $this->db->get('rute',$number,$offset)->result();
 
-    function jumlah_data(){
-        return $this->db->get('rute')->num_rows();
-    }
+  $this->db->select('rute.*, maskapai.nama'); 
+  $this->db->from('rute'); 
+  $this->db->join('maskapai', 'maskapai.id = rute.id_maskapai', 'left'); 
+  return $query = $this->db->get()->result();
+}
 
-    public function hapus($id){
-    	$this->db->where("id",$id);
-    	$this->db->delete('rute');
-    }
+function jumlah_data(){
+  return $this->db->get('rute')->num_rows();
+}
 
-    public function showedit(){
-    	return $this->db->get('rute')->result();
-    }
+public function hapus($id){
+ $this->db->where("id",$id);
+ $this->db->delete('rute');
+}
 
-    public function edit($id){
-    	$this->db->where("id",$id);
-    	return $this->db->get('rute');
-    }
+public function showedit(){
+ return $this->db->get('rute')->result();
+}
 
-    public function update($id,$data){
-    	$this->db->where("id",$id);
-    	$this->db->update('rute',$data);
-    }
+public function edit($id){
+ $this->db->where("id",$id);
+ return $this->db->get('rute');
+}
 
-    public function funcname($id){
+public function update($id,$data){
+ $this->db->where("id",$id);
+ $this->db->update('rute',$data);
+}
 
-        $this->db->select('nama');
-        $this->db->from('rute a');
-        $this->db->join('maskapai b', 'b.id=a.id_maskapai'
-            , 'left');
+public function cari($asal,$tujuan,$tgl){
+  $this->db->like('rute_from',$asal);
+  $this->db->like('rute_to',$tujuan);
+  $this->db->like('depart_at',$tgl);
 
-        $this->db->where('a.id_maskapai');
-        $query = $this->db->get();
-        return $query->result();
+  $this->db->select('rute.*, maskapai.nama'); 
+  $this->db->from('rute'); 
+  $this->db->join('maskapai', 'maskapai.id = rute.id_maskapai', 'left'); 
 
-    }
+  return $query = $this->db->get()->result();
+}
 
-    public function caridata(){
 
-        $this->db->like('from', $f);
-        $this->db->like('to', $t);
-        
+public function detail($id){
+
+  $this->db->select('rute.*, maskapai.nama,maskapai.kode'); 
+  $this->db->from('rute'); 
+  $this->db->join('maskapai', 'maskapai.id = rute.id_maskapai', 'left');
+  $this->db->where("rute.id",$id);
+ return $this->db->get();
+}
+
+public function adduser($data){
+   $this->db->insert('booking',$data);
  }
 
 }

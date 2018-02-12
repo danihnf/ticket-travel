@@ -8,7 +8,7 @@ class Landing extends CI_Controller {
 		$this->load->helper(array('url'));
 		$this->load->model("m_user");
 		$this->load->model("m_rute");
-	
+
 	}
 
 	public function index()
@@ -16,30 +16,49 @@ class Landing extends CI_Controller {
 		$this->load->view('front/index');
 	}
 
-	public function adduser(){
-		$op = $this->input->post('op');
-		$id = $this->input->post('id');
-		$nama = $this->input->post('nama');
-		$username = $this->input->post('username');
-		$hp = $this->input->post('hp');
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
+	public function cari(){
 
-		$data = array(
-			
-			'nama' => $nama,
-			'username' => $username,
-			'hp' => $hp,
-			'email' => $email,
-			'password' => md5($password),
+		$asal = $this->input->get('asal');
+		$tujuan = $this->input->get('tujuan');
+		$depart = $this->input->get('depart');
+		$tgl = date('Y-m-d', strtotime($depart));
+		$penumpang = $this->input->get('penumpang');
 
-			);
-		
-			$this->m_user->adduser($data);
-	
-		redirect('landing');
+		$data['hasil'] =   $this->m_rute->cari($asal,$tujuan,$tgl,$penumpang);
+		$this->load->view('front/v_rute',$data);
 	}
 
+	public function detail($id){
 
+		$data['pilih'] = $this->m_rute->detail($id);
+
+		$this->load->view('front/v_detail',$data);
+
+	}
+
+	public function booking(){
+		
+		$id = $this->input->post('id');
+		$id_rute = $this->input->post('id_rute');
+		$identitas = $this->input->post('identitas');
+		$nama = $this->input->post('nama');
+		$nohp = $this->input->post('nohp');
+		//$email = $this->input->post('email');
+		$alamat = $this->input->post('alamat');
+		
+		$data = array(
+			
+			'identitas' => $identitas,
+			'nama' => $nama,
+			'nohp' => $nohp,
+			//'email' => $email,
+			'alamat' => $alamat
+
+			);
+
+			$this->m_rute->adduser($data);
+	
+		$this->load->view('front/v_seat',$data);
+	}
 
 }

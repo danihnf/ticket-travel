@@ -21,7 +21,7 @@ class C_maskapai extends CI_Controller {
 
 		$config['base_url'] = base_url().'index.php/c_maskapai/index/';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 5;
+		$config['per_page'] = 3;
 
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
@@ -66,7 +66,7 @@ class C_maskapai extends CI_Controller {
 			'kode' => $kode,
 			'nama' => $nama,
 			'deskripsi' => $deskripsi,
-			'seat' => $seat,
+			'seat' => $seat
 
 			);
 		if($op=="tambah"){
