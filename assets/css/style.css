@@ -149,7 +149,7 @@ i.fa.fa-lock {
 /*-- /header --*/
 /*-- banner --*/
 .banner {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/bg-header.png)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -459,13 +459,13 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
 /*-- /footer --*/
 /*-- bus --*/
 .banner-1 {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/bg-header2.png)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height:200px;
+    min-height:350px;
 }
 .banner-1 h1 {
     font-size: 50px;
@@ -1040,7 +1040,7 @@ select {
     padding: 4px 5px!important;
     width: 80%;
     color: #9E9E9E;
-    margin-top: 18px;
+    margin-top: 10px;
     border: 1px solid #464646;
     padding: 5px 10px;
     vertical-align: middle;
@@ -1368,7 +1368,7 @@ p.dow {
     float: left;
 }
 li.nam {
-    width: 22%;
+    width: 20%;
 }
 li.mr
 {

@@ -426,7 +426,16 @@
                   <div class="input-group col-sm-8">        
                       <input name="nama" type="text" class="form-control" placeholder="Nama Pesawat">
                   </div>
-                </div>
+                </div>  
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Logo </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="gambar" type="file" class="form-control">
+                  </div>
+                </div> 
 
                   <div class="form-group">
                     <div class="col-sm-3">
@@ -484,6 +493,7 @@
                   <th>#</th>
                   <th>Kode</th>
                   <th>Nama Pesawat</th>
+                  <th>Logo</th>
                   <th>Deskripsi</th>
                   <th>Seat</th>
                   <th>Action</th>
@@ -497,6 +507,7 @@
                       <td><?php echo $no; ?></td>
                       <td><?php echo $obj1->kode; ?></td>  
                       <td><?php echo $obj1->nama; ?></td> 
+                      <td><?php echo $obj1->gambar; ?></td> 
                       <td><?php echo $obj1->deskripsi; ?></td> 
                       <td><?php echo $obj1->seat; ?> Kursi</td>
                       <td>

@@ -425,9 +425,8 @@
                       <td></td> 
                       <td></td>
                       <td>
-                        <a href="#"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
+                        <a href="#"><button type="button" class="btn btn-warning">Konfirmasi</button> </a>
 
-                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='#';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
                       </td>
 
                 </tr>

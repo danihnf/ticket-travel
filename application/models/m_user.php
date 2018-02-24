@@ -7,6 +7,12 @@ class M_user extends CI_Model {
     	$this->db->insert('user',$data);
     }
 
+    public function pesan($id){
+
+    	$this->db->where("id",$id);
+ 		return $this->db->get('booking');
+    }
+
 }
 
 /* End of file m_user.php */

@@ -46,7 +46,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--//end-animate-->
 </head>
 <body>
-
+	<div class="top-header">
+    <div class="container">
+      <ul class="tp-hd-lft wow fadeInLeft animated" data-wow-delay=".5s">
+        <li class="hm"><a href="<?php echo base_url(); ?>c_login"><i class="fa fa-home"></i> ADMIN</a></li>
+        <p></p>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 	<!--- header ---->
 	<div class="header">
 		<div class="container">
@@ -118,14 +126,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			<div class="ban-top">
 
-				<div class="bnr-left">
+				<div class="">
 					<label class="inputLabel">Dari</label>
-					<input name="asal" type="text" class="form-control" placeholder="Asal">
+					<select name="asal" class="form-control">
+                                <?php
+                                foreach($asal as $obj1){
+                                     $id = $obj1->id;
+                                     $asal = $obj1->rute_from;
+                                ?>
+                                <option value="<?php echo $asal; ?>"> <?php echo $asal; ?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
 				</div>
-
-				<div class="bnr-left">
+<br>
+				<div class="">
 					<label class="inputLabel">Ke</label>
-					<input name="tujuan" type="text" class="form-control" placeholder="Tujuan">
+					<select name="tujuan" class="form-control">
+                                <?php
+                                foreach($tujuan as $obj1){
+                                     $id = $obj1->id;
+                                     $tujuan = $obj1->rute_to;
+                                ?>
+                                <option value="<?php echo $tujuan; ?>"> <?php echo $tujuan; ?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
 				</div>
 
 				<div class="clearfix"></div>
@@ -163,7 +191,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<!---/End-date-piker---->
 			</div>
 			<div class="sear">		
-				<button class="seabtn">Search Buses</button> </div>
+				<button class="seabtn">Cari Pesawat</button> </div>
 			</form>
 
 		</div>
@@ -203,7 +231,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="rup-rgt">
 					<h3>FLAT USD. 50 OFF</h3>
-					<h4><a href="offers.html">BUS APP OFFER</a></h4>
+					<h4><a href="offers.html">FLIGHT APP OFFER</a></h4>
 					<p>book via the yellow Bus App<br>CODE:YBMAR12</p>
 				</div>
 				<div class="clearfix"></div>
@@ -216,14 +244,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container">
 		<div class="holiday">
 			<div class="col-md-3 holiday-left animated wow fadeInUp animated" data-wow-duration="1200ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;">
-				<img src="<?php echo base_url(); ?>assets/images/4.jpg" class="img-responsive" alt="">
+				<img src="<?php echo base_url(); ?>assets/images/c1.jpg" class="img-responsive" alt="">
 			</div>
 			<div class="col-md-6 holiday-mid animated wow fadeInUp animated" data-wow-duration="1200ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;">
 				<h3>Travel Holiday Packages</h3>
 				<p>Private Guide and Driver in any language and in any departure date. For more information please contact us....</p>
 			</div>
 			<div class="col-md-3 holiday-left animated wow fadeInUp animated" data-wow-duration="1200ms" data-wow-delay="500ms" style="visibility: visible; animation-duration: 1200ms; animation-delay: 500ms; animation-name: fadeInUp;">
-				<img src="<?php echo base_url(); ?>assets/images/5.jpg" class="img-responsive" alt="">
+				<img src="<?php echo base_url(); ?>assets/images/c2.jpg" class="img-responsive" alt="">
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -236,8 +264,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<a href="track.html"><img src="<?php echo base_url(); ?>assets/images/map1.png" class="img-responsive" alt=""></a>
 			</div>
 			<div class="col-md-6 track-left wow fadeInRight animated" data-wow-delay=".5s">
-				<h3>TRACK MY BUS</h3>
-				<p>First of its own kind,bus tracking feature on bus</p>
+				<h3>TRACK MY FLIGHT</h3>
+				<p>First of its own kind,flight tracking feature on bus</p>
 				<a href="track.html" class="learn">Learn More</a>
 			</div>
 			<div class="clearfix"></div>
@@ -249,7 +277,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="container">
 			<div class="col-md-4 routes-left wow fadeInRight animated" data-wow-delay=".5s">
 				<div class="rou-left">
-					<a href="#"><i class="fa fa-truck"></i></a>
+					<a href="#"><i class="fa fa-user"></i></a>
 				</div>
 				<div class="rou-rgt wow fadeInDown animated" data-wow-delay=".5s">
 					<h3>80000</h3>
@@ -263,7 +291,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="rou-rgt">
 					<h3>1900</h3>
-					<p>BUS OPERATORS</p>
+					<p>FLIGHT OPERATORS</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -285,7 +313,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="footer-top">
 		<div class="container">
 			<div class="col-md-6 footer-left wow fadeInLeft animated" data-wow-delay=".5s">
-				<h3>Bus Operators</h3>
+				<h3>Flight Operators</h3>
 				<ul>
 					<li><a href="bus.html">New York  Charter </a></li>
 					<li><a href="bus.html">Washington Charter</a></li>
@@ -306,7 +334,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</ul>
 			</div>
 			<div class="col-md-6 footer-left wow fadeInRight animated" data-wow-delay=".5s">
-				<h3>Bus Routes</h3>
+				<h3>Flight Routes</h3>
 				<ul>
 					<li><a href="travels.html">Alabama-California</a></li>
 					<li><a href="travels.html">Alaska-Colorado</a></li>
