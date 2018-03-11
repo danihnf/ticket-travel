@@ -149,7 +149,7 @@ i.fa.fa-lock {
 /*-- /header --*/
 /*-- banner --*/
 .banner {
-    background: url(../images/bg-header.png)no-repeat;
+    background: url(../images/bg_1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -167,7 +167,7 @@ i.fa.fa-lock {
 .bann-info h2 {
     font-size: 26px;
     margin-bottom: 30px;
-    color: #34ad00;
+    color: #104c71;
     font-weight: 700;
 }
 .bann-info {
@@ -225,7 +225,7 @@ button.seabtn {
 	 text-indent: 0;
     padding: 6px 20px;
     color: #fff;
-    background-color:#34ad00;
+    background-color: #104c71;
     border: 0;
     border-radius: 2px;
     -webkit-transition: all .2s;
@@ -244,7 +244,7 @@ button.seabtn:focus,button.seabtn:hover{
 .bann-info1 h3 {
     font-size: 2.1em;
     font-weight: 700;
-    color: #34ad00;
+    color: #104c71;
     text-align: center;
     margin-top: 25px;
 }
@@ -281,7 +281,7 @@ i.fa.fa-mobile  {
 }
 .rupes h3 {
     font-size: 20px;
-    color: #34ad00;
+    color: #104c71;
 	 font-weight: 700;
 }
 .rupes h4 {
@@ -436,7 +436,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
     color:#4CFF00;
 }
 .footer-btm {
-    background:#4CB320;
+    background:#104c71;
     padding: 0.5em 0;
 	text-align:center;
 }
@@ -452,7 +452,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
     color:#000000;
 }
 .copy-right {
-    background:#34ad00;
+    background:#104c71;
     text-align: center;
     padding: 0.5em 0;
 }
@@ -487,7 +487,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
 }
 .bus-tp {
     padding: 0.5em;
-    background: #34ad00;
+    background: #104c71;
 }
 .bus-btm li {
     float: left;
@@ -566,13 +566,13 @@ li.fare {
 .bus-midd h5 {
     font-weight: 700;
     font-size: 20px;
-    color: #34ad00;
+    color: #104c71;
 }
 a.view {
     padding: 6px 18px;
     font-weight: 700;
     color: #fff;
-    background-color: #34ad00;
+    background-color: #104c71;
     border: 0;
     font-size: 13px;
     border-radius: 2px;
@@ -1331,7 +1331,7 @@ ul.off-mo span {
 .selectroom_right h3 {
     font-size: 1.7em;
     font-weight: 600;
-	color:#34ad00;
+	color: #104c71;
 }
 p.dow {
     font-size: 15px;
@@ -1356,7 +1356,7 @@ p.dow {
 }
 .selectroom_right h4 {
     font-size: 1.2em;
-    color: #34ad00;
+    color: #104c71;
     line-height: 1.8em;
 	font-weight:600;
 }
@@ -2265,8 +2265,8 @@ ul.set-1 {
     margin-left: 266px;
 }
 .navbar-default {
-    background-color: #4CB320 !important;
-    border-color: #4CB320 !important;
+    background-color: #104c71 !important;
+    border-color: #104c71 !important;
 }
 .navbar {
     min-height: 0px !important;
@@ -2281,11 +2281,11 @@ ul.nav.navbar-nav li a {
     padding: 5px 8px;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color:#4CFF00 !important;
+    color:#104c71 !important;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-   color:#4CFF00 !important;
-    background-color: #4CB320 !important;
+   color: #3c97d0 !important;
+    background-color: #104c71 !important;
 }
 .navbar-collapse {
     padding-right: 0px !important;
@@ -4379,11 +4379,38 @@ h4.sing {
 .lightbox .box {
     min-width: 280px;
 }
+
 ul.set-1 {
     margin-left: 200px;
 }
 .login-left {
     width: 77%;
+}
+
+.corin-checkbox {
+  visibility: hidden;
+}
+.corin-checkbox-container {
+  position: relative;
+  display: inline-block;
+}
+.corin-checkbox-sub {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+  border-width: 1px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.corin-checkbox-sub.unchecked {
+  background: green;
+}
+
+.corin-checkbox-sub.checked {
+  background: red;
 }
 }
 /*-- responsive design --*/

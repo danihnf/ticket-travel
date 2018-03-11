@@ -75,6 +75,7 @@ class Landing extends CI_Controller {
 		$token_booking = $this->input->post('token_booking');
 		$identitas = $this->input->post('identitas');
 		$nama_penumpang = $this->input->post('nama_penumpang');
+		$kursi = $this->input->post('kursi');
 		$token = $this->input->post('token');
 		$price = $this->input->post('price');
 		$penumpang = $this->input->post('penumpang');
@@ -87,6 +88,7 @@ class Landing extends CI_Controller {
 			'token_booking' => $token_booking,
 			'no_identitas' => $identitas[$i],
 			'nama_penumpang' => $nama_penumpang[$i],
+			'kursi' => $kursi[$i],
 			'token' => $token,
 			'total_price' => $price[$i]
 
@@ -95,14 +97,15 @@ class Landing extends CI_Controller {
 			$this->m_rute->addcustomer($data);
  
 		$data['tiket'] = $this->m_rute->penumpang($token);
+		$data['kursi'] = $this->m_rute->kursi($token);
 		$this->load->view('front/v_ticket',$data);
 	}
 
-	public function seat(){
+	public function pembayaran(){
 
+		$pembayaran = $this->input->post('bukti');
 
-		
+		$this->load->view('front/v_reservasi',$data);
 	}
-
 
 }

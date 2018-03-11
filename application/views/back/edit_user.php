@@ -1,5 +1,21 @@
+<?php
 
- <!DOCTYPE html>
+$id = "";
+$username = "";
+if($op=="edit"){
+    foreach ($sql->result() as $obj){
+         
+          $op = "edit";
+          $id = $obj->id;
+          $username = $obj->username;
+
+    }
+}
+?>
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -354,7 +370,7 @@
           </a>
         </li>
 
-        <li class="active">
+        <li>
           <a href="<?php echo base_url(); ?>c_customer">
             <i class="fa fa-user"></i> <span>Customer</span>
             <span class="pull-right-container">
@@ -363,7 +379,7 @@
           </a>
         </li>
 
-        <li>
+        <li class="active">
           <a href="<?php echo base_url(); ?>c_rute">
             <i class="fa fa-map"></i> <span>Rute</span>
             <span class="pull-right-container">
@@ -396,11 +412,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Customer
-        <small>Penumpang Pesawat</small>
+        User
+        <small>User Admin</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Customer</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>User</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -408,69 +424,48 @@
     <!-- Main content -->
     <section class="content">
       <!-- FORM INPUT  -->
-      <div class="col-md-9">
+      <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Data Penumpang </h3>
+              <h3 class="box-title"> User Admin </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-              <thead>
+            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_dashboard/inputuser">
+                        <input type="hidden" name="op" value="<?php echo $op; ?>" class="form-control">
 
-                <tr>
-                  <th>#</th>
-                  <th>Nama Pemesan</th>
-                  <th>Dari</th>
-                  <th>Ke</th>
-                  <th>Total Harga</th>
-                  <th>Bukti</th>
-                  <th>Action</th>
-                </tr>
-                  <?php 
-                  $no=0;
-                  foreach ($customer->result() as $obj) {
-                  $no++;  
-                  
-                  ?>
-                <tr>
-                      <td><?php echo $no; ?></td>
-                      <td><?php echo $obj->nama_pemesan; ?></td>  
-                      <td><?php echo $obj->rute_from; ?></td> 
-                      <td><?php echo $obj->rute_to; ?></td> 
-                      <td><?php echo $obj->total_price; ?></td> 
-                      <td><img width="150px" src="<?php echo base_url(); ?>assets/pembayaran/bukti1.png" alt=""></td> 
-                      <td>
-                          <?php
-                            $token = $obj->token;
-                          ?>
-                          <form method="POST" action="<?php base_url(); ?>c_customer/konfirmasi/<?php echo $token; ?>">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>" class="form-control">
+              <div class="box-body">
 
-                            <input type="hidden" value="1" name="status">
-                        <button type="submit" class="btn btn-warning">Konfirmasi</button>
-                          
-                          <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_customer/hapus/<?php echo $token; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
-                        </form>
-                      </td>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Username </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $username; ?>">
+                  </div>
+                </div>
 
-                </tr>
-                  <?php } ?>
-                </thead>
-                
-              </table>
-              <div class="box-footer clearfix pagination pagination-sm no-margin">
-              <?php
-                echo $this->pagination->create_links();
-              ?>
-              <div class="box-footer clearfix">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Password </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="password" type="password" class="form-control" placeholder="Password Baru">
+                  </div>
+                </div>
+
+
+                <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </div>
+              </div>
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-      </div>
+          </form>
         </section>
         <!-- right col -->
       </div>
@@ -723,11 +718,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
 <script type="text/javascript">
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    });
+                          $(function () {
+                              $('#datetimepicker1').datetimepicker();
+                          });
+</script>
+<script type="text/javascript">
+                          $(function () {
+                              $('#datetimepicker2').datetimepicker();
+                          });
 </script>
 </body>
 </html>

@@ -51,10 +51,9 @@ public function cari($asal,$tujuan,$tgl){
   return $query = $this->db->get()->result();
 }
 
-
 public function detail($id){
 
-  $this->db->select('rute.*, maskapai.nama,maskapai.kode,maskapai.gambar'); 
+  $this->db->select('rute.*, maskapai.nama,maskapai.kode,maskapai.gambar,maskapai.seat'); 
   $this->db->from('rute'); 
   $this->db->join('maskapai', 'maskapai.id = rute.id_maskapai', 'left');
   $this->db->where("rute.id",$id);
@@ -91,10 +90,55 @@ public function addpemesan($data){
 public function penumpang($token){
 
   $this->db->select('*'); 
-  $this->db->from('customer'); 
+  $this->db->from('customer');  
   $this->db->join('booking', 'booking.token_pemesan = customer.token_booking', 'left');
+  $this->db->join('rute', 'rute.id = customer.id_rute', 'left');
   $this->db->where("customer.token",$token);
   return $this->db->get();
+}
+
+public function reservasi($token){
+
+  $this->db->select('*'); 
+  $this->db->from('customer');  
+  $this->db->join('booking', 'booking.token_pemesan = customer.token_booking', 'left');
+  $this->db->join('rute', 'rute.id = customer.id_rute', 'left');
+  $this->db->where("customer.token",$token);
+  return $this->db->get();
+}
+
+public function cek(){
+
+  $this->db->select('*'); 
+  $this->db->from('customer');  
+  $this->db->join('booking', 'booking.token_pemesan = customer.token_booking', 'left');
+  $this->db->join('rute', 'rute.id = customer.id_rute', 'left');
+  $this->db->group_by('token');
+  return $this->db->get()->result();
+}
+
+public function cekkode($kode){
+
+  $this->db->like('token',$kode);
+
+  $this->db->select('*'); 
+  $this->db->from('customer');  
+  $this->db->join('booking', 'booking.token_pemesan = customer.token_booking', 'left');
+  $this->db->join('rute', 'rute.id = customer.id_rute', 'left');
+  $this->db->group_by('token');
+  return $this->db->get()->result();
+}
+
+public function kursi($token){
+
+  $this->db->select('*'); 
+  $this->db->from('customer'); 
+  $this->db->from('rute'); 
+  $this->db->join('booking', 'booking.token_pemesan = customer.token_booking', 'left');
+  $this->db->join('maskapai', 'maskapai.id = rute.id_maskapai', 'left');
+  $this->db->where("customer.token",$token);
+  return $this->db->get();
+
 }
 
 }

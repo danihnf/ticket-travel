@@ -345,6 +345,15 @@
         </li>
 
         <li>
+          <a href="<?php echo base_url(); ?>c_dashboard/user">
+            <i class="fa fa-user"></i> <span>User</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">input</small>
+            </span>
+          </a>
+        </li>
+
+        <li>
           <a href="<?php echo base_url(); ?>c_customer">
             <i class="fa fa-user"></i> <span>Customer</span>
             <span class="pull-right-container">
@@ -427,15 +436,6 @@
                       <input name="nama" type="text" class="form-control" placeholder="Nama Pesawat">
                   </div>
                 </div>  
-
-                <div class="form-group">
-                    <div class="col-sm-3">
-                          <label class="control-label"> Logo </label>
-                    </div>
-                  <div class="input-group col-sm-8">        
-                      <input name="gambar" type="file" class="form-control">
-                  </div>
-                </div> 
 
                   <div class="form-group">
                     <div class="col-sm-3">

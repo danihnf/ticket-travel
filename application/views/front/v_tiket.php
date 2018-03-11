@@ -40,16 +40,6 @@ foreach ($tiket->result() as $obj){
 
 }
 ?>
-
-<?php 
-
-$seat = "";
-foreach ($kursi->result() as $obj1){
-  
-  $seat = $obj1->seat;
-}
-
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -121,8 +111,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
           <nav class="cl-effect-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
-                <li><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
+                <li><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
+                <li class="active"><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
                 <li><a href="#">Kontak Kami</a></li>
                 <div class="clearfix"></div>
               </ul>
@@ -155,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             Booking
           </h4>
           <div class="booking-line"></div>
-          <h3 class="booking-code"> Kode Booking <span>
+          <h3 class="booking-code">Your Reservation Code <span>
             <?php 
             $tokenp = substr($token,0,7);
             ?>
@@ -174,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="booking-title">
               <h4>
                 <span class="glyphicon glyphicon-user"></span>
-                Penumpang
+                Passengers
                 <?php echo $i; ?>
               </h4>
               <div class="booking-line"></div>
@@ -225,7 +215,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="flight-booking-1">
             <div class="booking-title">
               <h4>
-                <span class="glyphicon glyphicon-plane"></span> Detail Pesawat </h4>
+                <span class="glyphicon glyphicon-plane"></span> Flight Details</h4>
                 <div class="booking-line"></div>
               </div>
               <table class="flight-table table-customer">
@@ -270,18 +260,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   <span class="glyphicon glyphicon-pencil"></span> Summary</h4>
                   <div class="booking-line"></div>
                 </div>
-
-                <h3 class="status-unpaid">
-                  <?php
-                    if($status == 1){
-                      echo "PAID";
-                    }else{
-                      echo 'UNPAID';  
-                    }
+                <?php if($status == 1){
                   ?>
-                </h3>
+                <h3 class="status-paid">
+                  LUNAS </h3>
 
-              <table class="summary-table table-customer">
+                <?php }else{ ?>
+                <h3 class="status-unpaid">
+                  BELUM LUNAS </h3>
+                  <table class="summary-table table-customer">
             
                 <tr class="price-you-pay">
                   <td>Total Pembayaran</td>
@@ -315,12 +302,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- <div class="booking-line"></div> -->
 
                 <h4>Upload Bukti Pembayaran</h4>
-                <form action="<?php echo base_url(); ?>boking/cek" enctype="multipart/form-data">
+                <form action="<?php echo base_url(); ?>landing/pembayaran" method="POST" enctype="multipart/form-data">
       
-                  <input class="form-control" type="file">
+                  <input class="form-control" name="bukti" type="file">
                   <button class="choose-btn">Upload</button>
                 </form>
               </div>
+                <?php } ?> 
+
           </div>
           </div>
           </div>

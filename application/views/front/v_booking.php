@@ -7,11 +7,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?PHP
 $id="";
 $nama="";
-$gambar="";
 $kode="";
 $rute_from = "";
 $rute_to = "";
 $depart = "";
+$seat = "";
 $arrive_at = "";
 $price = "";
 foreach ($pilih->result() as $obj){
@@ -19,6 +19,7 @@ foreach ($pilih->result() as $obj){
   $id = $obj->id;
   $nama = $obj->nama;
   $gambar = $obj->gambar;
+  $seat = $obj->seat;
   $kode = $obj->kode;
   $dari = $obj->rute_from;
   $ke = $obj->rute_to;
@@ -31,7 +32,7 @@ foreach ($pilih->result() as $obj){
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>DANI HANAFI</title>
+  <title>Reavion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="Green Wheels Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -52,6 +53,7 @@ foreach ($pilih->result() as $obj){
   <!--animate-->
   <link href="<?php echo base_url(); ?>assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
   <script src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/seat.js"></script>
   <script>
    new WOW().init();
  </script>
@@ -64,7 +66,7 @@ foreach ($pilih->result() as $obj){
   <div class="header">
     <div class="container">
       <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
-        <a href="<?php echo base_url(); ?>landing">Dani<span> Hanafi </span></a>  
+        <a href="<?php echo base_url(); ?>landing">Reavion</span></a>  
       </div>
       <div class="bus wow fadeInUp animated" data-wow-delay=".5s">
         <a href="index.html" class="buses active">PESAWAT</a>
@@ -97,8 +99,8 @@ foreach ($pilih->result() as $obj){
           <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
             <nav class="cl-effect-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Cari Tiket</a></li>
-                <li><a href="#">Cek Pemesanan</a></li>
+                <li class="active"><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
+                <li><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
                 <li><a href="#">Kontak Kami</a></li>
                 <div class="clearfix"></div>
               </ul>
@@ -224,7 +226,7 @@ foreach ($pilih->result() as $obj){
     $id_rute = $this->input->post('id_rute');
     $booking = $this->input->post('token_pemesan');
     
-    $str = 'abcdef1234';
+    $str = 'awsedrftg12345';
     $token = strtoupper(str_shuffle($str));
     ?>
     <form method="POST" action="<?php echo base_url(); ?>landing/customer/<?php echo $token; ?>">
@@ -256,8 +258,23 @@ foreach ($pilih->result() as $obj){
             <div class="clearfix"></div>
 
             <div class="clearfix"></div>
-          </ul>
           <?php } ?>
+          <br>
+          <label class="inputLabel">Tempat Duduk</label>
+        </ul>
+
+        <?php
+
+        for($i=1; $i < $seat; $i++){
+
+          ?>
+          <input id="sample" data-corin-checkbox="true" style="float: left; margin:5px; width:13%;" type="checkbox" name="kursi[]" value="<?php echo $i; ?>">  
+          
+          <style>
+
+        </style>
+         <?php } ?>
+         <div class="clearfix"></div>
           <div class="sear">    
             <button class="seabtn">Submit</button> </div>
           </form>

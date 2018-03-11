@@ -4,20 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?PHP
-$rute_from = "";
-$rute_to = "";
-$depart = "";
-$arrive_at = "";
-foreach ($hasil as $obj){
-
-	$dari = $obj->rute_from;
-	$ke = $obj->rute_to;
-	$depart = $obj->depart_at;
-	$arrive = $obj->arrive_at;
-
-}
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -86,8 +72,8 @@ foreach ($hasil as $obj){
 					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 						<nav class="cl-effect-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
-								<li><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
+								<li><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
+								<li class="active"><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
 								<li><a href="#">Kontak Kami</a></li>
 								<div class="clearfix"></div>
 							</ul>
@@ -110,7 +96,10 @@ foreach ($hasil as $obj){
 	<!--- bus-tp ---->
 	<div class="bus-tp">
 		<div class="container">
-			<p><?php echo date('D , d M Y',strtotime($depart)); ?></p></p>
+			<form method="GET" action="<?php echo base_url(); ?>boking/carikode">
+				<label>Cari</label>
+				<input type="text" name="kode">
+			</form>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -119,11 +108,11 @@ foreach ($hasil as $obj){
 	<div class="bus-btm">
 		<div class="container">
 			<ul>
-				<li class="trav">Airline</li>
-				<li class="dept">Depart</li>
-				<li class="arriv">Arrive</li>
-				<li class="arriv">Duration</li>
-				<li class="fare">Price</li>
+				<li class="trav">Kode Booking</li>
+				<li class="dept">Pemesan</li>
+				<li class="arriv">Dari</li>
+				<li class="arriv">Ke</li>
+				<li class="fare">Total Price</li>
 				<div class="clearfix"></div>
 			</ul>
 		</div>
@@ -133,79 +122,48 @@ foreach ($hasil as $obj){
 	<div class="bus-midd wow zoomIn animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">
 		<div class="container">
 			<!--- ul-first  ---->
-			<?php if(empty($hasil)){
-				?>
-				<div>
-					<section><br>
-						<div class="error-page">
-
-							<div class="error-content">
-								<h3><i class="fa fa-warning text-yellow"></i> Tidak ada Rute yang dicari.</h3>
-
-							</div>
-							<!-- /.error-content -->
-						</div>
-						<!-- /.error-page -->
-					</section></div>
-					<?php }else{ ?> 
 					<?php
-					$penumpang = $this->input->get('penumpang');
-					foreach ($hasil as $obj1) {
+					foreach ($hasilrsv as $obj1) {
 						?> 
 						<ul class="first">
 							<li class="trav">
-								<div class="bus-ic">
-									<h2><i class="fa fa-plane"></i></h2>
-								</div>
-								<div class="bus-txt">
-									<h4><?php echo $obj1->nama; ?></h4>
-									<p>A/C Sleeper</p>
-								</div>
+									<?php 
+									$tokenp = substr($obj1->token,0,7); ?>
+									<h4><?php echo $tokenp; ?></h4>
+								
 								<div class="clearfix"></div>
 							</li>
 							<li class="dept">
-								<div class="bus-ic1">
-									<i class="fa fa-clock-o"></i>
-								</div>
-								<div class="bus-txt1">
-									<h4><a href="<?php echo base_url(); ?>assets/#"><?php echo date('H:i',strtotime($obj1->depart_at)); ?></a></h4>
-									<p><?php echo $dari; ?></p>
-								</div>
+								
+									<h4><?php echo $obj1->nama_pemesan; ?></h4>
+									<p></p>
+								
 								<div class="clearfix"></div>
 							</li>
 							<li class="dept">
-								<div class="bus-ic1">
-									<i class="fa fa-clock-o"></i>
-								</div>
-								<div class="bus-txt1">
-									<h4><a href="<?php echo base_url(); ?>assets/#"><?php echo date('H:i',strtotime($obj1->arrive_at)); ?></a></h4>
-									<p><?php echo $ke; ?></p>
-								</div>
+								
+									<h4><?php echo $obj1->rute_from; ?></h4>
+									<p></p>
+								
 								<div class="clearfix"></div>
 							</li>
-							<li class="arriv">
-								<div class="bus-txt2">
-									<h4><a href="<?php echo base_url(); ?>assets/#">
-										<?php 
-										$to_time = strtotime("$obj1->depart_at"); 
-										$from_time = strtotime("$obj1->arrive_at"); echo round(abs($to_time - $from_time) / 3600). "h ";
-										echo round(abs($to_time - $from_time) % 360 / 60). "m";
-										?>
-									</a></h4>
-									<p>direct</p>
-								</div>
+							<li class="dept">
+								
+									<h4><?php echo $obj1->rute_to; ?></h4>
+									
+								
 							</li>
 							<li class="fare">
 								<div class="bus-txt4">
-									<h5>Rp <?php echo $obj1->price; ?></h4>
-										<p>1 kursi</p>
-										<a href="<?php echo base_url(); ?>landing/detail/<?php echo $obj1->id; ?>/<?php echo $penumpang; ?>" class="view">Pilih</a>	
+									<h5>Rp <?php echo $obj1->total_price; ?></h4>
+										<p></p>
+										<a href="<?php base_url(); ?>show/<?php echo $obj1->token; ?>" class="view">Pilih</a>	
 									</div>
 								</li>
 								<div class="clearfix"></div>
 							</ul>
 							<!--- /ul-first  ---->
-							<?php }} ?>
+							<?php } ?>
 
 						</div>
 						<div class="clearfix"></div>
@@ -221,73 +179,7 @@ foreach ($hasil as $obj){
 <!--- /bus-midd ---->
 <div class="container">
 	<div class="col-md-12 bann-info wow fadeInRight animated" data-wow-delay=".5s">
-		<h2>Pencarian Lain</h2>
-		<form action="" method="GET">
-
-			<div class="ban-top">
-
-				<div class="">
-					<label class="inputLabel">Dari</label>
-					<select name="asal" class="form-control">
-						<?php
-						foreach($asal as $obj1){
-							$id = $obj1->id;
-							$asal = $obj1->rute_from;
-							?>
-							<option value="<?php echo $asal; ?>"> <?php echo $asal; ?></option>
-							<?php
-						}
-						?>
-					</select>
-				</div>
-
-				<div class="">
-					<label class="inputLabel">Ke</label>
-					<select name="tujuan" class="form-control">
-						<?php
-						foreach($tujuan as $obj1){
-							$id = $obj1->id;
-							$tujuan = $obj1->rute_to;
-							?>
-							<option value="<?php echo $tujuan; ?>"> <?php echo $tujuan; ?></option>
-							<?php
-						}
-						?>
-					</select>
-				</div>
-
-				<div class="clearfix"></div>
-			</div>
-			<div class="ban-bottom">
-
-				<div class="bnr-right" id="datetimepicker">
-					<label class="inputLabel">Berangkat</label>
-					<input name="depart" class="date form-control" id="datepicker" type="text"/>
-				</div>
-
-				<div class="bnr-right col-10">
-					<label class="inputLabel">Penumpang</label>
-					<select name="penumpang" class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</select>
-				</div>
-				<div class="clearfix"></div>
-				<!---start-date-piker---->
-				<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.css" />
-				<script src="<?php echo base_url(); ?>assets/js/jquery-ui.js"></script>
-				<script>
-					$(function() {
-						$( "#datepicker,#datepicker1" ).datepicker();
-					});
-				</script>
-				<!---/End-date-piker---->
-			</div>
-			<div class="sear">		
-				<button class="seabtn"> Cari Pesawat </button> </div>
-			</form>
+		
 		</div>
 	</div>
 	<!---copy-right ---->

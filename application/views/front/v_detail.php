@@ -31,7 +31,7 @@ foreach ($pilih->result() as $obj){
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>DANI HANAFI</title>
+  <title>Reavion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="Green Wheels Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -64,7 +64,7 @@ foreach ($pilih->result() as $obj){
   <div class="header">
     <div class="container">
       <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
-        <a href="<?php echo base_url(); ?>landing">Dani<span> Hanafi </span></a>  
+        <a href="<?php echo base_url(); ?>landing">Reavion</span></a>  
       </div>
       <div class="bus wow fadeInUp animated" data-wow-delay=".5s">
         <a href="index.html" class="buses active">PESAWAT</a>
@@ -97,8 +97,8 @@ foreach ($pilih->result() as $obj){
           <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
             <nav class="cl-effect-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Cari Tiket</a></li>
-                <li><a href="#">Cek Pemesanan</a></li>
+                <li class="active"><a href="<?php echo base_url(); ?>landing">Cari Tiket</a></li>
+                <li><a href="<?php echo base_url(); ?>boking/cek">Cek Pemesanan</a></li>
                 <li><a href="#">Kontak Kami</a></li>
                 <div class="clearfix"></div>
               </ul>

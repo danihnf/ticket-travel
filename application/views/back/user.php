@@ -1,5 +1,4 @@
-
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -23,13 +22,8 @@
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-  <link rel="stylesheet" href="<?php echo base_url(); ?>admin/plugins/timepicker/bootstrap-timepicker.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -345,7 +339,7 @@
           </a>
         </li>
 
-        <li>
+        <li class="active">
           <a href="<?php echo base_url(); ?>c_dashboard/user">
             <i class="fa fa-user"></i> <span>User</span>
             <span class="pull-right-container">
@@ -354,7 +348,7 @@
           </a>
         </li>
 
-        <li class="active">
+        <li>
           <a href="<?php echo base_url(); ?>c_customer">
             <i class="fa fa-user"></i> <span>Customer</span>
             <span class="pull-right-container">
@@ -371,7 +365,7 @@
             </span>
           </a>
         </li>
-        
+
         <li>
           <a href="<?php echo base_url(); ?>c_maskapai">
             <i class="fa fa-plane"></i> <span>Maskapai</span>
@@ -380,7 +374,7 @@
             </span>
           </a>
         </li>
-
+      
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
@@ -396,11 +390,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Customer
-        <small>Penumpang Pesawat</small>
+        Rute
+        <small>Perjalanan Pesawat</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Customer</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>User</a></li>
         <li class="active">Dashboard</li>
       </ol>
     </section>
@@ -408,55 +402,91 @@
     <!-- Main content -->
     <section class="content">
       <!-- FORM INPUT  -->
-      <div class="col-md-9">
+      <div class="col-md-6">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title"> Data Penumpang </h3>
+              <h3 class="box-title"> User Admin </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>c_dashboard/inputuser">
+              <div class="box-body">
+
+                  <input type="hidden" name="op" value="<?php echo $op='tambah' ?>" class="form-control">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Username </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="username" type="text" class="form-control" placeholder="Username">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                          <label class="control-label"> Password </label>
+                    </div>
+                  <div class="input-group col-sm-8">        
+                      <input name="password" type="password" class="form-control" placeholder="Password">
+                  </div>
+                </div>
+
+                <div class="box-footer">
+                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              </div>
+              </div>
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </form>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data User Admin</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
               <thead>
-
                 <tr>
                   <th>#</th>
-                  <th>Nama Pemesan</th>
-                  <th>Dari</th>
-                  <th>Ke</th>
-                  <th>Total Harga</th>
-                  <th>Bukti</th>
-                  <th>Action</th>
+                  <th>Username</th>
+                  <th>Password</th>
                 </tr>
-                  <?php 
-                  $no=0;
-                  foreach ($customer->result() as $obj) {
-                  $no++;  
-                  
-                  ?>
+                  <?php
+                  $no=$this->uri->segment('3');;
+                  foreach ($user as $obj1) {
+                    $no++; 
+                 ?> 
                 <tr>
                       <td><?php echo $no; ?></td>
-                      <td><?php echo $obj->nama_pemesan; ?></td>  
-                      <td><?php echo $obj->rute_from; ?></td> 
-                      <td><?php echo $obj->rute_to; ?></td> 
-                      <td><?php echo $obj->total_price; ?></td> 
-                      <td><img width="150px" src="<?php echo base_url(); ?>assets/pembayaran/bukti1.png" alt=""></td> 
+                      <td><?php echo $obj1->username; ?></td>  
+                      <td><?php echo $obj1->password; ?></td>  
                       <td>
-                          <?php
-                            $token = $obj->token;
-                          ?>
-                          <form method="POST" action="<?php base_url(); ?>c_customer/konfirmasi/<?php echo $token; ?>">
+                        <a href="<?php echo base_url(); ?>c_dashboard/edit/<?php echo $obj1->id; ?>"><button type="button" class="btn btn-warning glyphicon glyphicon-edit"></button> </a>
 
-                            <input type="hidden" value="1" name="status">
-                        <button type="submit" class="btn btn-warning">Konfirmasi</button>
-                          
-                          <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_customer/hapus/<?php echo $token; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
-                        </form>
+                        <a href="javascript:if(confirm('Anda yakin ingin menghapus data?')){document.location='<?php echo base_url(); ?>c_dashboard/hapus/<?php echo $obj1->id; ?>';}"><button type="button" class="btn btn-danger glyphicon glyphicon-trash"></button> </a>
                       </td>
 
                 </tr>
-                  <?php } ?>
+                <?php
+                  }
+                ?>
                 </thead>
                 
               </table>
@@ -706,9 +736,7 @@
 <script src="<?php echo base_url(); ?>admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
 <script src="<?php echo base_url(); ?>admin/bower_components/moment/min/moment.min.js"></script>
-<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="<?php echo base_url(); ?>admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url(); ?>admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
@@ -718,16 +746,8 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url(); ?>admin/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <script src="<?php echo base_url(); ?>admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>admin/dist/js/demo.js"></script>
-<script type="text/javascript">
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    });
-</script>
 </body>
 </html>

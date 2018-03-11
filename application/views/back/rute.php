@@ -349,6 +349,15 @@
         </li>
 
         <li>
+          <a href="<?php echo base_url(); ?>c_dashboard/user">
+            <i class="fa fa-user"></i> <span>User</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">input</small>
+            </span>
+          </a>
+        </li>
+
+        <li>
           <a href="<?php echo base_url(); ?>c_customer">
             <i class="fa fa-user"></i> <span>Customer</span>
             <span class="pull-right-container">

@@ -55,26 +55,17 @@ class C_maskapai extends CI_Controller {
 
 	public function inputmaskapai(){
 		
-		$config['upload_path']          = './gambar/';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 3072;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 768;
-
-		$this->load->library('upload', $config);
 		$op = $this->input->post('op');
 		$id = $this->input->post('id');
 		$kode = $this->input->post('kode');
 		$nama = $this->input->post('nama');
-		$gambar = $this->upload->do_upload('gambar');
 		$deskripsi = $this->input->post('deskripsi');
 		$seat = $this->input->post('seat');
-		$gbr = $this->upload->data();
+	
 		$data = array(
 			
 			'kode' => $kode,
 			'nama' => $nama,
-			'gambar' => $gbr['filefoto'],
 			'deskripsi' => $deskripsi,
 			'seat' => $seat
 
